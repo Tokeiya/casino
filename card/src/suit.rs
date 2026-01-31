@@ -33,6 +33,7 @@ mod tests {
 
 	static EXPECTED: LazyLock<[&str; 4]> = LazyLock::new(|| ["♠", "♥", "♦", "♣"]);
 
+	//noinspection DuplicatedCode
 	#[test]
 	fn display_test() {
 		for (suit, expected) in SUITS.iter().zip(EXPECTED.iter()) {
