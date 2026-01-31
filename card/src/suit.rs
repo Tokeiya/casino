@@ -20,11 +20,18 @@ impl Display for Suit {
 }
 
 #[cfg(test)]
+pub mod sample {
+	use crate::suit::Suit;
+
+	pub const SUITS: [Suit; 4] = [Suit::Spades, Suit::Hearts, Suit::Diamonds, Suit::Clubs];
+}
+
+#[cfg(test)]
 mod tests {
 	use super::*;
+	use crate::suit::sample::SUITS;
 	use std::sync::LazyLock;
 
-	const SUITS: [Suit; 4] = [Suit::Spades, Suit::Hearts, Suit::Diamonds, Suit::Clubs];
 	static EXPECTED: LazyLock<[&str; 4]> = LazyLock::new(|| ["♠", "♥", "♦", "♣"]);
 
 	#[test]

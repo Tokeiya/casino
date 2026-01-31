@@ -2,7 +2,7 @@ use crate::rank::Rank;
 use crate::suit::Suit;
 use std::fmt::{Display, Formatter};
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 pub struct RegularCard {
 	pub suit: Suit,
 	pub rank: Rank,

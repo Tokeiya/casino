@@ -29,7 +29,7 @@ impl Display for Rank {
 			Rank::Seven => write!(f, "7"),
 			Rank::Eight => write!(f, "8"),
 			Rank::Nine => write!(f, "9"),
-			Rank::Ten => write!(f, "10"),
+			Rank::Ten => write!(f, "X"),
 			Rank::Jack => write!(f, "J"),
 			Rank::Queen => write!(f, "Q"),
 			Rank::King => write!(f, "K"),
@@ -38,11 +38,10 @@ impl Display for Rank {
 }
 
 #[cfg(test)]
-mod tests {
+pub mod sample {
 	use super::*;
-	use std::sync::LazyLock;
 
-	const RANKS: [Rank; 13] = [
+	pub const RANKS: [Rank; 13] = [
 		Rank::Ace,
 		Rank::Two,
 		Rank::Three,
@@ -57,10 +56,17 @@ mod tests {
 		Rank::Queen,
 		Rank::King,
 	];
+}
+
+#[cfg(test)]
+mod tests {
+	use super::sample::RANKS;
+	use super::*;
+	use std::sync::LazyLock;
 
 	static EXPECTED: LazyLock<[&str; 13]> = LazyLock::new(|| {
 		[
-			"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K",
+			"A", "2", "3", "4", "5", "6", "7", "8", "9", "X", "J", "Q", "K",
 		]
 	});
 
