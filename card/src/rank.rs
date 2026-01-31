@@ -1,5 +1,21 @@
 use std::fmt::{Display, Formatter};
 
+pub const RANKS: [Rank; 13] = [
+	Rank::Ace,
+	Rank::Two,
+	Rank::Three,
+	Rank::Four,
+	Rank::Five,
+	Rank::Six,
+	Rank::Seven,
+	Rank::Eight,
+	Rank::Nine,
+	Rank::Ten,
+	Rank::Jack,
+	Rank::Queen,
+	Rank::King,
+];
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 pub enum Rank {
 	Ace,
@@ -38,29 +54,8 @@ impl Display for Rank {
 }
 
 #[cfg(test)]
-pub mod sample {
-	use super::*;
-
-	pub const RANKS: [Rank; 13] = [
-		Rank::Ace,
-		Rank::Two,
-		Rank::Three,
-		Rank::Four,
-		Rank::Five,
-		Rank::Six,
-		Rank::Seven,
-		Rank::Eight,
-		Rank::Nine,
-		Rank::Ten,
-		Rank::Jack,
-		Rank::Queen,
-		Rank::King,
-	];
-}
-
-#[cfg(test)]
 mod tests {
-	use super::sample::RANKS;
+	use super::*;
 	use std::sync::LazyLock;
 
 	static EXPECTED: LazyLock<[&str; 13]> = LazyLock::new(|| {

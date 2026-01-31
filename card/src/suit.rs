@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+pub const SUITS: [Suit; 4] = [Suit::Spades, Suit::Hearts, Suit::Diamonds, Suit::Clubs];
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 pub enum Suit {
 	Spades,
@@ -20,15 +22,8 @@ impl Display for Suit {
 }
 
 #[cfg(test)]
-pub mod sample {
-	use crate::suit::Suit;
-
-	pub const SUITS: [Suit; 4] = [Suit::Spades, Suit::Hearts, Suit::Diamonds, Suit::Clubs];
-}
-
-#[cfg(test)]
 mod tests {
-	use crate::suit::sample::SUITS;
+	use super::*;
 	use std::sync::LazyLock;
 
 	static EXPECTED: LazyLock<[&str; 4]> = LazyLock::new(|| ["♠", "♥", "♦", "♣"]);

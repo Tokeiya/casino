@@ -27,8 +27,8 @@ impl Display for Card {
 #[cfg(test)]
 mod test {
 	use super::*;
-	use crate::rank::sample::RANKS;
-	use crate::suit::sample::SUITS;
+	use crate::rank::RANKS;
+	use crate::suit::SUITS;
 
 	#[test]
 	fn new() {

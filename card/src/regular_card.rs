@@ -25,8 +25,8 @@ impl Display for RegularCard {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use crate::rank::sample::RANKS;
-	use crate::suit::sample::SUITS;
+	use crate::rank::RANKS;
+	use crate::suit::SUITS;
 
 	#[test]
 	fn test_new_card() {
