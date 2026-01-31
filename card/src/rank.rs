@@ -61,7 +61,6 @@ pub mod sample {
 #[cfg(test)]
 mod tests {
 	use super::sample::RANKS;
-	use super::*;
 	use std::sync::LazyLock;
 
 	static EXPECTED: LazyLock<[&str; 13]> = LazyLock::new(|| {

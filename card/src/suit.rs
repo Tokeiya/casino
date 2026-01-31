@@ -28,7 +28,6 @@ pub mod sample {
 
 #[cfg(test)]
 mod tests {
-	use super::*;
 	use crate::suit::sample::SUITS;
 	use std::sync::LazyLock;
 
