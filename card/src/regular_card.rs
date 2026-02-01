@@ -9,7 +9,7 @@ pub struct RegularCard {
 }
 
 impl RegularCard {
-	pub fn new(suit: Suit, rank: Rank) -> Self {
+	pub const fn new(suit: Suit, rank: Rank) -> Self {
 		Self { suit, rank }
 	}
 }
