@@ -1,3 +1,4 @@
+mod all_cards;
 mod card;
 mod rank;
 mod regular_card;
