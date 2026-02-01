@@ -1,7 +1,7 @@
 mod card;
 mod rank;
 mod regular_card;
-mod shoe;
+pub mod shoe;
 mod suit;
 
 pub mod prelude {

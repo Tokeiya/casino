@@ -5,4 +5,5 @@ edition = "2024"
 
 [dependencies]
 thiserror = "*"
-rand_core = "*"
+rand = "*"
+common_errors = { git = "https://github.com/Tokeiya/common_errors", branch = "master" }

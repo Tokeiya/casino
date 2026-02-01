@@ -1,6 +1,4 @@
-use crate::rank::Rank;
-use crate::regular_card::RegularCard;
-use crate::suit::Suit;
+use super::prelude::*;
 use std::fmt::Display;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
