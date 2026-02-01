@@ -30,7 +30,6 @@ pub fn without_joker() -> std::slice::Iter<'static, Card> {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use prelude::*;
 	use std::collections::HashMap;
 	#[test]
 	fn suit_rank_cartesian_test() {
@@ -82,8 +81,6 @@ mod tests {
 
 		let mut suits: HashMap<&'static Suit, usize> = SUITS.iter().map(|s| (s, 0usize)).collect();
 		let mut ranks: HashMap<&'static Rank, usize> = RANKS.iter().map(|r| (r, 0usize)).collect();
-
-		let mut flg = false;
 
 		for (a, e) in without_joker().zip(CARDS[1..].iter()) {
 			assert_eq!(a, e);
