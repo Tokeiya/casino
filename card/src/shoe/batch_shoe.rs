@@ -5,21 +5,32 @@ use common_errors::invalid_argument::Information;
 use rand::Rng;
 use rand::prelude::*;
 
-pub struct BachShoe<R> {
-	scr: Vec<Card>,
+pub struct BachShoe<'a, R, F, I> {
+	scr: F,
 	rnd: R,
 	cut: usize,
 	limit: usize,
 	store: Vec<Card>,
+	phantom: std::marker::PhantomData<&'a I>,
 }
 
-impl<R> BachShoe<R> {
-	fn new(scr: Vec<Card>, rnd: R, cut: usize, limit: usize) -> ShoeResult<Self> {
+impl<'a, R, F, I> BachShoe<'a, R, F, I>
+where
+	R: RngCore,
+	I: IntoIterator<Item = &'a Card>,
+	F: FnMut() -> I,
+{
+	fn new(scr: F, rnd: R, cut: usize, limit: usize) -> ShoeResult<Self> {
 		todo!()
 	}
 }
 
-impl<R: Rng> Shoe for BachShoe<R> {
+impl<'a, R, F, I> Shoe for BachShoe<'a, R, F, I>
+where
+	R: RngCore,
+	I: IntoIterator<Item = &'a Card>,
+	F: FnMut() -> I,
+{
 	fn try_deal(&mut self) -> ShoeResult<Card> {
 		todo!()
 	}
@@ -50,4 +61,35 @@ impl<R: Rng> Shoe for BachShoe<R> {
 }
 
 #[cfg(test)]
-mod tests {}
+mod tests {
+	use super::*;
+	use crate::prelude::*;
+	use rand::RngCore;
+	use rand::seq::SliceRandom;
+	use rand_chacha::ChaCha8Rng;
+
+	#[test]
+	fn new() {
+		let mut rng = ChaCha8Rng::seed_from_u64(42);
+		let mut expected = (0..6).flat_map(|_| CARDS.iter()).collect::<Vec<_>>();
+
+		expected.shuffle(&mut rng);
+
+		let rng = ChaCha8Rng::seed_from_u64(42);
+		let fixture = BachShoe::new(|| (0..6).flat_map(|_| CARDS.iter()), rng, 60, 52).unwrap();
+		assert_eq!(fixture.limit, 52);
+		assert_eq!(fixture.cut, 60);
+
+		assert_eq!(fixture.store.len(), expected.len());
+
+		for (a, e) in fixture.store.iter().zip(expected.iter()) {
+			assert_eq!(a, *e);
+		}
+	}
+
+	#[test]
+	fn new_cut_over_size() {
+		let rng = ChaCha8Rng::seed_from_u64(42);
+		let fixture = BachShoe::new(|| (0..6).flat_map(|_| CARDS.iter()), rng, 318, 319);
+	}
+}

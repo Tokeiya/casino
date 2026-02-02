@@ -24,6 +24,7 @@ version = "0.1.0"
 dependencies = [
  "common_errors",
  "rand",
+ "rand_chacha",
  "thiserror",
 ]
 
